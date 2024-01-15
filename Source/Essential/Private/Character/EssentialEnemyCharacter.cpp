@@ -2,14 +2,24 @@
 
 
 #include "Character/EssentialEnemyCharacter.h"
+#include "Essential/Essential.h"
 
+
+AEssentialEnemyCharacter::AEssentialEnemyCharacter()
+{
+}
 
 void AEssentialEnemyCharacter::HighLightActor()
 {
-	bHighlighted = true;
+	GetMesh()->SetRenderCustomDepth(true);
+	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+	Weapon->SetRenderCustomDepth(true);
+	Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+	SetCustomDepthMaterial(OnHighLightMaterial);
 }
 
 void AEssentialEnemyCharacter::UnHighLightActor()
 {
-	bHighlighted = false;
+	GetMesh()->SetRenderCustomDepth(false);
+	Weapon->SetRenderCustomDepth(false);
 }

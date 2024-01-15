@@ -14,11 +14,10 @@ UCLASS()
 class ESSENTIAL_API AEssentialTreeCharacter : public AEssentialBaseCharacter, public IEnemyInterface
 {
 	GENERATED_BODY()
+
+	AEssentialTreeCharacter();
 	
 public:
 	virtual void HighLightActor() override;
 	virtual void UnHighLightActor() override;
-	
-	UPROPERTY(BlueprintReadOnly)
-	bool bHighlighted = false;
 };

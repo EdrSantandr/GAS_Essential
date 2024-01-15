@@ -2,13 +2,24 @@
 
 
 #include "Character/EssentialTreeCharacter.h"
+#include "Essential/Essential.h"
+
+AEssentialTreeCharacter::AEssentialTreeCharacter()
+{
+	
+}
 
 void AEssentialTreeCharacter::HighLightActor()
 {
-	bHighlighted = true;
+	GetMesh()->SetRenderCustomDepth(true);
+	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_GREEN);
+	Weapon->SetRenderCustomDepth(true);
+	Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_GREEN);
+	SetCustomDepthMaterial(OnHighLightMaterial);
 }
 
 void AEssentialTreeCharacter::UnHighLightActor()
 {
-	bHighlighted = false;  
+	GetMesh()->SetRenderCustomDepth(false);
+	Weapon->SetRenderCustomDepth(false);
 }

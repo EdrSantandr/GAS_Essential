@@ -7,6 +7,9 @@
 #include "Interaction/EnemyInterface.h"
 #include "EssentialEnemyCharacter.generated.h"
 
+class UMaterial;
+class UMaterialInstanceDynamic;
+
 /**
  * 
  */
@@ -16,9 +19,8 @@ class ESSENTIAL_API AEssentialEnemyCharacter : public AEssentialBaseCharacter, p
 	GENERATED_BODY()
 
 public:
+
+	AEssentialEnemyCharacter();
 	virtual void HighLightActor() override;
 	virtual void UnHighLightActor() override;
-
-	UPROPERTY(BlueprintReadOnly)
-	bool bHighlighted = false;
 };
