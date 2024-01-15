@@ -2,10 +2,17 @@
 
 
 #include "Character/EssentialTreeCharacter.h"
+
+#include "AbilitySystem/EssentialAbilitySystemComponent.h"
+#include "AbilitySystem/EssentialAttributeSet.h"
 #include "Essential/Essential.h"
 
 AEssentialTreeCharacter::AEssentialTreeCharacter()
 {
+	AbilitySystemComponent = CreateDefaultSubobject<UEssentialAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+	AttributeSet = CreateDefaultSubobject<UEssentialAttributeSet>("AttributeSet");
 	
 }
 

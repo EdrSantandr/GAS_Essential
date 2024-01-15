@@ -38,6 +38,11 @@ void AEssentialBaseCharacter::SetCustomDepthMaterial(UMaterial* InHighLightMater
 	}
 }
 
+UAbilitySystemComponent* AEssentialBaseCharacter::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+
 void AEssentialBaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();

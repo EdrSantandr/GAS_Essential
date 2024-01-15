@@ -2,11 +2,18 @@
 
 
 #include "Character/EssentialEnemyCharacter.h"
+
+#include "AbilitySystem/EssentialAbilitySystemComponent.h"
+#include "AbilitySystem/EssentialAttributeSet.h"
 #include "Essential/Essential.h"
 
 
 AEssentialEnemyCharacter::AEssentialEnemyCharacter()
 {
+	AbilitySystemComponent = CreateDefaultSubobject<UEssentialAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+	AttributeSet = CreateDefaultSubobject<UEssentialAttributeSet>("AttributeSet");
 }
 
 void AEssentialEnemyCharacter::HighLightActor()
