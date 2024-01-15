@@ -3,9 +3,11 @@
 
 #include "Character/EssentialWizardCharacter.h"
 
+#include "AbilitySystemComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Player/EssentialPlayerState.h"
 
 AEssentialWizardCharacter::AEssentialWizardCharacter()
 {
@@ -31,42 +33,23 @@ AEssentialWizardCharacter::AEssentialWizardCharacter()
 void AEssentialWizardCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
+	// Init for the server
+	InitAbilityActorInfo();
 }
 
-void AEssentialWizardCharacter::ChangeHighlightMaterial(bool InCharacterType)
+void AEssentialWizardCharacter::OnRep_PlayerState()
 {
-	if (!IsValid(PostMaterialRed) || !IsValid(PostMaterialGreen)) return;
-	
-	if (FMath::RandBool())
-	{
-		UE_LOG(LogTemp, Warning, TEXT("GREEN MATEIAL CALL"));
-		// green material
-		PostMaterialDynamic = UMaterialInstanceDynamic::Create(PostMaterialGreen, this);
-		
-		FWeightedBlendable WeightedBlendable = FWeightedBlendable(1.f,PostMaterialDynamic);
-		TArray<FWeightedBlendable> WeightMaterials;
-		WeightMaterials.Add(WeightedBlendable);
-
-		FPostProcessSettings PostProcessSettings;
-		PostProcessSettings.WeightedBlendables = WeightMaterials;
-
-		TopDownCameraComponent->PostProcessSettings = PostProcessSettings;
-		
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("RED MATEIAL CALL"));
-		// red material
-		PostMaterialDynamic = UMaterialInstanceDynamic::Create(PostMaterialRed, this);
-		
-		FWeightedBlendable WeightedBlendable = FWeightedBlendable(1.f,PostMaterialDynamic);
-		TArray<FWeightedBlendable> WeightMaterials;
-		WeightMaterials.Add(WeightedBlendable);
-
-		FPostProcessSettings PostProcessSettings;
-		PostProcessSettings.WeightedBlendables = WeightMaterials;
-
-		TopDownCameraComponent->PostProcessSettings = PostProcessSettings;
-	}
+	Super::OnRep_PlayerState();
+	// Init for the client
+	InitAbilityActorInfo();
 }
 
+void AEssentialWizardCharacter::InitAbilityActorInfo()
+{
+	if (AEssentialPlayerState* EssentialPlayerState = GetPlayerState<AEssentialPlayerState>())
+	{
+		EssentialPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(EssentialPlayerState, this);
+		AbilitySystemComponent = EssentialPlayerState->GetAbilitySystemComponent();
+		AttributeSet = EssentialPlayerState->GetAttributeSet();
+	}
+}

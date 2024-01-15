@@ -46,6 +46,4 @@ protected:
 	UPROPERTY()
 	UMaterialInstanceDynamic* HighLightMaterialDynamic = nullptr;
 
-	
-	
 };

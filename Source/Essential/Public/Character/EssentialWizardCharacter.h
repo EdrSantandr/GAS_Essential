@@ -20,6 +20,7 @@ public:
 	AEssentialWizardCharacter();
 
 	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
 
 private:
 	UPROPERTY(VisibleAnywhere)
@@ -28,14 +29,9 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USpringArmComponent> CameraBoom;
 
-	UPROPERTY(EditDefaultsOnly, Category="Hightlight")
-	TObjectPtr<UMaterial> PostMaterialRed;
-
-	UPROPERTY(EditDefaultsOnly, Category="Hightlight")
-	TObjectPtr<UMaterial> PostMaterialGreen;
+	void InitAbilityActorInfo();
 
 protected:
-	void ChangeHighlightMaterial(bool InCharacterType);
 
 	UPROPERTY()
 	TObjectPtr<UMaterialInstanceDynamic> PostMaterialDynamic = nullptr;

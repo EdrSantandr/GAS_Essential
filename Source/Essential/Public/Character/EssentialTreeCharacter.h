@@ -15,9 +15,11 @@ class ESSENTIAL_API AEssentialTreeCharacter : public AEssentialBaseCharacter, pu
 {
 	GENERATED_BODY()
 
-	AEssentialTreeCharacter();
-	
 public:
+	AEssentialTreeCharacter();
 	virtual void HighLightActor() override;
 	virtual void UnHighLightActor() override;
+
+protected:
+	virtual void BeginPlay() override;
 };

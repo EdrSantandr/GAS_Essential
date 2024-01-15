@@ -23,4 +23,7 @@ public:
 	AEssentialEnemyCharacter();
 	virtual void HighLightActor() override;
 	virtual void UnHighLightActor() override;
+
+protected:
+	virtual void BeginPlay() override;
 };
