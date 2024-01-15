@@ -13,5 +13,7 @@ UCLASS()
 class ESSENTIAL_API AEssentialWizardCharacter : public AEssentialBaseCharacter
 {
 	GENERATED_BODY()
-	
+
+public:
+	AEssentialWizardCharacter();
 };
