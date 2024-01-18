@@ -11,6 +11,8 @@ void UOverlayWidgetController::BroadcastInitialValues()
 	{
 		OnHealthChange.Broadcast(EssentialAttributeSet->GetHealth());
 		OnMaxHealthChange.Broadcast(EssentialAttributeSet->GetMaxHealth());
+		OnEssenceChange.Broadcast(EssentialAttributeSet->GetEssence());
+		OnMaxEssenceChange.Broadcast(EssentialAttributeSet->GetMaxEssence());
 	}
 }
 
@@ -20,6 +22,8 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(EssentialAttributeSet->GetHealthAttribute()).AddUObject(this, &UOverlayWidgetController::HealthChanged);
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(EssentialAttributeSet->GetMaxHealthAttribute()).AddUObject(this, &UOverlayWidgetController::MaxHealthChanged);
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(EssentialAttributeSet->GetEssenceAttribute()).AddUObject(this, &UOverlayWidgetController::EssenceChanged);
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(EssentialAttributeSet->GetMaxEssenceAttribute()).AddUObject(this, &UOverlayWidgetController::MaxEssenceChanged);
 }
 
 void UOverlayWidgetController::HealthChanged(const FOnAttributeChangeData& Data) const
@@ -30,4 +34,14 @@ void UOverlayWidgetController::HealthChanged(const FOnAttributeChangeData& Data)
 void UOverlayWidgetController::MaxHealthChanged(const FOnAttributeChangeData& Data) const
 {
 	OnMaxHealthChange.Broadcast(Data.NewValue);
+}
+
+void UOverlayWidgetController::EssenceChanged(const FOnAttributeChangeData& Data) const
+{
+	OnEssenceChange.Broadcast(Data.NewValue);
+}
+
+void UOverlayWidgetController::MaxEssenceChanged(const FOnAttributeChangeData& Data) const
+{
+	OnMaxEssenceChange.Broadcast(Data.NewValue);
 }

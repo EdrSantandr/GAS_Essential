@@ -5,8 +5,7 @@
 #include "CoreMinimal.h"
 #include "UI/WidgetController/EssentialWidgetController.h"
 #include "OverlayWidgetController.generated.h"
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangeSignature, float, NewHealth);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxHealthChangeSignature, float, NewMaxHealth);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAttributeChangedSignature, float, NewValue);
 
 /**
  * 
@@ -21,12 +20,21 @@ public:
 	virtual void BindCallbacksToDependencies() override;
 
 	UPROPERTY(BlueprintAssignable, Category="GAS|Attributes")
-	FOnHealthChangeSignature OnHealthChange;
+	FOnAttributeChangedSignature OnHealthChange;
 
 	UPROPERTY(BlueprintAssignable, Category="GAS|Attributes")
-	FOnMaxHealthChangeSignature OnMaxHealthChange;
+	FOnAttributeChangedSignature OnMaxHealthChange;
+
+	UPROPERTY(BlueprintAssignable, Category="GAS|Attributes")
+	FOnAttributeChangedSignature OnEssenceChange;
+	
+	UPROPERTY(BlueprintAssignable, Category="GAS|Attributes")
+	FOnAttributeChangedSignature OnMaxEssenceChange;
 
 protected:
 	void HealthChanged(const FOnAttributeChangeData& Data) const;
 	void MaxHealthChanged(const FOnAttributeChangeData& Data) const;
+
+	void EssenceChanged(const FOnAttributeChangeData& Data) const;
+	void MaxEssenceChanged(const FOnAttributeChangeData& Data) const;
 };
