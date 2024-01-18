@@ -30,6 +30,6 @@ void AEssentialHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilit
 	const FWidgetControllerParams WidgetControllerParams(PC, PS, ASC, AS);
 	UOverlayWidgetController* WidgetController = GetOverlayWidgetController(WidgetControllerParams);
 	OverlayWidget->SetWidgetController(WidgetController);
-	
+	WidgetController->BroadcastInitialValues();
 	Widget->AddToViewport();
 }
