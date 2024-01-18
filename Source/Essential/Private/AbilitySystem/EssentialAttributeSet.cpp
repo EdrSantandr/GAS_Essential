@@ -7,7 +7,7 @@
 
 UEssentialAttributeSet::UEssentialAttributeSet()
 {
-	InitHealth(200.f);
+	InitHealth(100.f);
 	InitMaxHealth(200.f);
 	InitEssence(100.f);
 	InitMaxEssence(100.f);
