@@ -23,6 +23,21 @@ void UEssentialAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty
 	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, MaxEssence, COND_None, REPNOTIFY_Always);
 }
 
+//Just to do clamping
+void UEssentialAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
+{
+	Super::PreAttributeChange(Attribute, NewValue);
+
+	if (Attribute == GetHealthAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxHealth());
+	}
+	if (Attribute == GetEssenceAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxEssence());
+	}
+}
+
 void UEssentialAttributeSet::OnRep_Essence(const FGameplayAttributeData& OldEssence) const
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, Essence, OldEssence);
