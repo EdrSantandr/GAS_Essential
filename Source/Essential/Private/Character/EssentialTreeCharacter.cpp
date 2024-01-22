@@ -34,5 +34,11 @@ void AEssentialTreeCharacter::UnHighLightActor()
 void AEssentialTreeCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	InitAbilityActorInfo();
+}
+
+void AEssentialTreeCharacter::InitAbilityActorInfo()
+{
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	Cast<UEssentialAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
 }

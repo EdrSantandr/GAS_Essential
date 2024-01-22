@@ -47,3 +47,7 @@ void AEssentialBaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 }
+
+void AEssentialBaseCharacter::InitAbilityActorInfo()
+{
+}

@@ -34,5 +34,10 @@ void AEssentialEnemyCharacter::UnHighLightActor()
 void AEssentialEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void AEssentialEnemyCharacter::InitAbilityActorInfo()
+{
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	Cast<UEssentialAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
 }

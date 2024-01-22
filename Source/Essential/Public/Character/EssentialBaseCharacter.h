@@ -46,4 +46,6 @@ protected:
 	UPROPERTY()
 	UMaterialInstanceDynamic* HighLightMaterialDynamic = nullptr;
 
+	virtual void InitAbilityActorInfo();
+
 };

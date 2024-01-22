@@ -29,12 +29,10 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USpringArmComponent> CameraBoom;
 
-	void InitAbilityActorInfo();
-
 protected:
 
 	UPROPERTY()
 	TObjectPtr<UMaterialInstanceDynamic> PostMaterialDynamic = nullptr;
 
-	
+	virtual void InitAbilityActorInfo() override;
 };

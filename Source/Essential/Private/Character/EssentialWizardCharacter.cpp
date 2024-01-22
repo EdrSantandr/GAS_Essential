@@ -4,6 +4,7 @@
 #include "Character/EssentialWizardCharacter.h"
 
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/EssentialAbilitySystemComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -52,6 +53,7 @@ void AEssentialWizardCharacter::InitAbilityActorInfo()
 	{
 		EssentialPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(EssentialPlayerState, this);
 		AbilitySystemComponent = EssentialPlayerState->GetAbilitySystemComponent();
+		Cast<UEssentialAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
 		AttributeSet = EssentialPlayerState->GetAttributeSet();
 
 		if (AEssentialPlayerController* EssentialPlayerController = Cast<AEssentialPlayerController>(GetController()))
@@ -61,6 +63,5 @@ void AEssentialWizardCharacter::InitAbilityActorInfo()
 				EssentialHUD->InitOverlay(EssentialPlayerController, EssentialPlayerState, AbilitySystemComponent, AttributeSet);
 			}
 		}
-		
 	}
 }
