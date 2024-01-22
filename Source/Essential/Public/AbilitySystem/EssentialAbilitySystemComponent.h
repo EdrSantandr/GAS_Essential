@@ -6,6 +6,8 @@
 #include "AbilitySystemComponent.h"
 #include "EssentialAbilitySystemComponent.generated.h"
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTagsSignature, const FGameplayTagContainer& /*Asset Tags*/);
+
 /**
  * 
  */
@@ -16,6 +18,8 @@ class ESSENTIAL_API UEssentialAbilitySystemComponent : public UAbilitySystemComp
 
 public:
 	void AbilityActorInfoSet();
+
+	FEffectAssetTagsSignature EffectAssetTagsDelegate;
 	
 protected:
 
