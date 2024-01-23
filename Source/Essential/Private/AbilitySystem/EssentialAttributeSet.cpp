@@ -49,7 +49,14 @@ void UEssentialAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModC
 	FEffectProperties Props;
 	SetEffectProperties(Data,Props);
 
-	
+	if(Data.EvaluatedData.Attribute == GetHealthAttribute())
+	{
+		SetHealth(FMath::Clamp(GetHealth(),0.f, GetMaxHealth()));
+	}
+	if(Data.EvaluatedData.Attribute == GetEssenceAttribute())
+	{
+		SetEssence(FMath::Clamp(GetEssence(),0.f, GetMaxEssence()));
+	}
 }
 
 void UEssentialAttributeSet::OnRep_Essence(const FGameplayAttributeData& OldEssence) const
