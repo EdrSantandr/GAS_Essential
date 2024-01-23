@@ -61,11 +61,10 @@ class ESSENTIAL_API UEssentialAttributeSet : public UAttributeSet
 public:
 	UEssentialAttributeSet();
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
-
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 
+	//Vital Attributes
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = "OnRep_Health", Category = "Vital Attributes")
 	FGameplayAttributeData Health;
 	ATTRIBUTE_ACCESSORS(UEssentialAttributeSet, Health);
@@ -81,6 +80,33 @@ public:
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = "OnRep_MaxEssence", Category = "Vital Attributes")
 	FGameplayAttributeData MaxEssence;
 	ATTRIBUTE_ACCESSORS(UEssentialAttributeSet, MaxEssence);
+
+	//Primary Attributes
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = "OnRep_Intelligence", Category = "Primery Attributes")
+	FGameplayAttributeData Intelligence;
+	ATTRIBUTE_ACCESSORS(UEssentialAttributeSet, Intelligence);
+	
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = "OnRep_Strength", Category = "Primery Attributes")
+	FGameplayAttributeData Strength;
+	ATTRIBUTE_ACCESSORS(UEssentialAttributeSet, Strength);
+
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = "OnRep_Dexterity", Category = "Primery Attributes")
+	FGameplayAttributeData Dexterity;
+	ATTRIBUTE_ACCESSORS(UEssentialAttributeSet, Dexterity);
+
+	//Secondary Attributes
+	//Related to Intelligence
+	//Related to Strength
+	//Related to Dexterity
+	
+	UFUNCTION()
+	void OnRep_Intelligence(const FGameplayAttributeData& OldIntelligence) const;
+
+	UFUNCTION()
+	void OnRep_Strength(const FGameplayAttributeData& OldStrength) const;
+
+	UFUNCTION()
+	void OnRep_Dexterity(const FGameplayAttributeData& OldDexterity) const;
 	
 	UFUNCTION()
 	void OnRep_Essence(const FGameplayAttributeData& OldEssence) const;

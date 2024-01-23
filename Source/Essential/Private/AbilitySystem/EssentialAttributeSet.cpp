@@ -25,6 +25,9 @@ void UEssentialAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty
 	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, MaxHealth, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, Essence, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, MaxEssence, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, Strength, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, Intelligence, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, Dexterity, COND_None, REPNOTIFY_Always);
 }
 
 //Just to do clamping
@@ -57,6 +60,21 @@ void UEssentialAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModC
 	{
 		SetEssence(FMath::Clamp(GetEssence(),0.f, GetMaxEssence()));
 	}
+}
+
+void UEssentialAttributeSet::OnRep_Intelligence(const FGameplayAttributeData& OldIntelligence) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, Intelligence, OldIntelligence);
+}
+
+void UEssentialAttributeSet::OnRep_Strength(const FGameplayAttributeData& OldStrength) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, Strength, OldStrength);
+}
+
+void UEssentialAttributeSet::OnRep_Dexterity(const FGameplayAttributeData& OldDexterity) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, Dexterity, OldDexterity);
 }
 
 void UEssentialAttributeSet::OnRep_Essence(const FGameplayAttributeData& OldEssence) const
