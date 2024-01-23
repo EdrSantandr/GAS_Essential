@@ -2,6 +2,7 @@
 
 #include "Character/EssentialBaseCharacter.h"
 
+#include "AbilitySystemComponent.h"
 #include "Engine/PostProcessVolume.h"
 #include "Game/EssentialGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
@@ -50,4 +51,20 @@ void AEssentialBaseCharacter::BeginPlay()
 
 void AEssentialBaseCharacter::InitAbilityActorInfo()
 {
+}
+
+void AEssentialBaseCharacter::InitializeGameplayEffect(const TSubclassOf<UGameplayEffect> AttributeGameplayEffect) const
+{
+	const FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(AttributeGameplayEffect, 1.f,ContextHandle);
+	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
+}
+
+void AEssentialBaseCharacter::InitializeAttributes() const
+{
+	check(IsValid(GetAbilitySystemComponent()));
+	check(DefaultPrimaryAttributes);
+	check(DefaultVitalAttributes);
+	InitializeGameplayEffect(DefaultPrimaryAttributes);
+	InitializeGameplayEffect(DefaultVitalAttributes);
 }

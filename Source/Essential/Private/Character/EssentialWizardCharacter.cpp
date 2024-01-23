@@ -63,5 +63,6 @@ void AEssentialWizardCharacter::InitAbilityActorInfo()
 				EssentialHUD->InitOverlay(EssentialPlayerController, EssentialPlayerState, AbilitySystemComponent, AttributeSet);
 			}
 		}
+		InitializeAttributes();
 	}
 }
