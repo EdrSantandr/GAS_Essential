@@ -66,7 +66,7 @@ void AEssentialBaseCharacter::InitializeGameplayEffect(const TSubclassOf<UGamepl
 void AEssentialBaseCharacter::InitializeAttributes() const
 {
 	InitializeGameplayEffect(DefaultPrimaryAttributes,1.f);
-	InitializeGameplayEffect(DefaultVitalAttributes,1.f);
 	InitializeGameplayEffect(DefaultCombatAttributes,1.f);
 	InitializeGameplayEffect(DefaultSecondaryAttributes,1.f);
+	InitializeGameplayEffect(DefaultVitalAttributes,1.f);
 }
