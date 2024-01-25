@@ -21,13 +21,26 @@ void UEssentialAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
+	//Vital
 	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, Health, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, MaxHealth, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, Essence, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, MaxEssence, COND_None, REPNOTIFY_Always);
+	//Primary
 	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, Strength, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, Intelligence, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, Dexterity, COND_None, REPNOTIFY_Always);
+	//Secondary
+	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, EssenceRegeneration, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, CooldownTimes, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, HealthRegeneration, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, Armor, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, MovementSpeed, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, AttackSpeed, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, TurnSpeed, COND_None, REPNOTIFY_Always);
+	//Combat
+	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, CriticalHitChance, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UEssentialAttributeSet, BlockChance, COND_None, REPNOTIFY_Always);
 }
 
 //Just to do clamping
@@ -77,6 +90,16 @@ void UEssentialAttributeSet::OnRep_Dexterity(const FGameplayAttributeData& OldDe
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, Dexterity, OldDexterity);
 }
 
+void UEssentialAttributeSet::OnRep_EssenceRegeneration(const FGameplayAttributeData& OldEssenceRegeneration) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, EssenceRegeneration, OldEssenceRegeneration);
+}
+
+void UEssentialAttributeSet::OnRep_CooldownTimes(const FGameplayAttributeData& OldCooldownTimes) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, CooldownTimes, OldCooldownTimes);
+}
+
 void UEssentialAttributeSet::OnRep_Essence(const FGameplayAttributeData& OldEssence) const
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, Essence, OldEssence);
@@ -95,6 +118,41 @@ void UEssentialAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealt
 void UEssentialAttributeSet::OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth) const
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, MaxHealth, OldMaxHealth);
+}
+
+void UEssentialAttributeSet::OnRep_HealthRegeneration(const FGameplayAttributeData& OldHealthRegeneration) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, HealthRegeneration, OldHealthRegeneration);
+}
+
+void UEssentialAttributeSet::OnRep_Armor(const FGameplayAttributeData& OldArmor) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, Armor, OldArmor);
+}
+
+void UEssentialAttributeSet::OnRep_MovementSpeed(const FGameplayAttributeData& OldMovementSpeed) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, MovementSpeed, OldMovementSpeed);
+}
+
+void UEssentialAttributeSet::OnRep_AttackSpeed(const FGameplayAttributeData& OldAttackSpeed) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, AttackSpeed, OldAttackSpeed);
+}
+
+void UEssentialAttributeSet::OnRep_TurnSpeed(const FGameplayAttributeData& OldTurnSpeed) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, TurnSpeed, OldTurnSpeed);
+}
+
+void UEssentialAttributeSet::OnRep_CriticalHitChance(const FGameplayAttributeData& OldCriticalHitChance) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, CriticalHitChance, OldCriticalHitChance);
+}
+
+void UEssentialAttributeSet::OnRep_BlockChance(const FGameplayAttributeData& OldBlockChance) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UEssentialAttributeSet, BlockChance, OldBlockChance);
 }
 
 void UEssentialAttributeSet::SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props)
