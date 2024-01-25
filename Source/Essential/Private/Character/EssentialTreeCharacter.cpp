@@ -31,6 +31,11 @@ void AEssentialTreeCharacter::UnHighLightActor()
 	Weapon->SetRenderCustomDepth(false);
 }
 
+int32 AEssentialTreeCharacter::GetPlayerLevel()
+{
+	return Level;
+}
+
 void AEssentialTreeCharacter::BeginPlay()
 {
 	Super::BeginPlay();

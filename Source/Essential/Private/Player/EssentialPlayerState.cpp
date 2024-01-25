@@ -5,6 +5,7 @@
 
 #include "AbilitySystem/EssentialAbilitySystemComponent.h"
 #include "AbilitySystem/EssentialAttributeSet.h"
+#include "Net/UnrealNetwork.h"
 
 AEssentialPlayerState::AEssentialPlayerState()
 {
@@ -17,7 +18,18 @@ AEssentialPlayerState::AEssentialPlayerState()
 
 }
 
+void AEssentialPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(AEssentialPlayerState, Level);
+}
+
 UAbilitySystemComponent* AEssentialPlayerState::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
+}
+
+void AEssentialPlayerState::OnRep_Level(int32 OldLevel)
+{
 }

@@ -47,6 +47,15 @@ void AEssentialWizardCharacter::OnRep_PlayerState()
 	InitAbilityActorInfo();
 }
 
+int32 AEssentialWizardCharacter::GetPlayerLevel()
+{
+	if (const AEssentialPlayerState* EssentialPlayerState = GetPlayerState<AEssentialPlayerState>())
+	{
+		return EssentialPlayerState->GetPlayerLevel();		
+	}
+	return 0;
+}
+
 void AEssentialWizardCharacter::InitAbilityActorInfo()
 {
 	if (AEssentialPlayerState* EssentialPlayerState = GetPlayerState<AEssentialPlayerState>())
