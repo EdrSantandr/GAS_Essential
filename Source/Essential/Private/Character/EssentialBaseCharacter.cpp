@@ -53,18 +53,19 @@ void AEssentialBaseCharacter::InitAbilityActorInfo()
 {
 }
 
-void AEssentialBaseCharacter::InitializeGameplayEffect(const TSubclassOf<UGameplayEffect> AttributeGameplayEffect) const
+void AEssentialBaseCharacter::InitializeGameplayEffect(const TSubclassOf<UGameplayEffect> AttributeGameplayEffect, float Level) const
 {
+	check(IsValid(GetAbilitySystemComponent()));
+	check(AttributeGameplayEffect);
 	const FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
-	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(AttributeGameplayEffect, 1.f,ContextHandle);
+	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(AttributeGameplayEffect, Level,ContextHandle);
 	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
 }
 
 void AEssentialBaseCharacter::InitializeAttributes() const
 {
-	check(IsValid(GetAbilitySystemComponent()));
-	check(DefaultPrimaryAttributes);
-	check(DefaultVitalAttributes);
-	InitializeGameplayEffect(DefaultPrimaryAttributes);
-	InitializeGameplayEffect(DefaultVitalAttributes);
+	InitializeGameplayEffect(DefaultPrimaryAttributes,1.f);
+	InitializeGameplayEffect(DefaultVitalAttributes,1.f);
+	InitializeGameplayEffect(DefaultCombatAttributes,1.f);
+	InitializeGameplayEffect(DefaultSecondaryAttributes,1.f);
 }

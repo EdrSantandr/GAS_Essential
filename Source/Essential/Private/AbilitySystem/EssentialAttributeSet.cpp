@@ -12,9 +12,7 @@
 UEssentialAttributeSet::UEssentialAttributeSet()
 {
 	InitHealth(100.f);
-	InitMaxHealth(200.f);
 	InitEssence(100.f);
-	InitMaxEssence(100.f);
 }
 
 void UEssentialAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
